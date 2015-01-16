@@ -7,18 +7,19 @@ output:
 
 
 ## Loading and preprocessing the data
-```{r echo=TRUE}
+
+```r
 # Read raw data 
 activity.data.raw <- read.csv("./activity.csv", header=TRUE,na.strings = "NA", stringsAsFactors = FALSE)
 
 # Clean the data
 # Take only the rows that have no NA values
 activity.data.modified <- activity.data.raw[complete.cases(activity.data.raw),]
-
 ```
 ## What is mean total number of steps taken per day?
 
-```{r echo=TRUE}
+
+```r
 # Change "date" column from 'character' type to 'Date' type
 activity.data.modified$date <- as.Date(activity.data.modified$date)
 
@@ -34,14 +35,16 @@ df <- do.call(rbind.data.frame, t)
 
 # Create a histogram plot on the 'total number of steps'
 hist(df[,1], main = "Histogram for total 53 days", xlab = "Total number of steps")
+```
 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+
+```r
 # mean and median total number of steps taken per day
 mean.total.steps <- round(mean (df[,1]))
 median.total.steps <- round(median (df[,1]))
-
-
 ```
-The **mean** is `r mean.total.steps` and the **median** is `r median.total.steps`
+The **mean** is 1.0766 &times; 10<sup>4</sup> and the **median** is 1.0765 &times; 10<sup>4</sup>
 
 
 ## What is the average daily activity pattern?
