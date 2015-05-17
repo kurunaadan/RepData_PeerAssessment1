@@ -52,6 +52,7 @@ average.data <- aggregate(steps ~ interval, data=activity.data.modified, FUN=mea
 plot(average.data$interval, average.data$steps, type="l", main="Average daily activity pattern", 
      xlab="5-minute interval", ylab="Average number of steps",col = "dark red")
 
+
 # Which 5-minute interval is having the maximum average number of steps
 max.five.minute.interval <- which.max(average.data$steps)
 
@@ -172,7 +173,7 @@ library(package ="lattice")
 average.data.week <- aggregate(steps~interval+type.of.day, data=activity.data.raw.copy, FUN=mean)
 
 # Plot with 2 panels
-xyplot(average.data.week$steps ~ average.data.week$interval|average.data.weekday$type.of.day, type="l",
+xyplot(average.data.week$steps ~ average.data.week$interval|average.data.week$type.of.day, type="l",
   main="Average daily activity pattern", xlab="5-minute interval", ylab="Average number of steps", 
   col = "green", layout = c(1,2))
 

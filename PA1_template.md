@@ -1,9 +1,4 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 
 ## Loading and preprocessing the data
@@ -11,6 +6,13 @@ output:
 ```r
 # Load 'knitr' library
 library("knitr")
+```
+
+```
+## Warning: package 'knitr' was built under R version 3.1.3
+```
+
+```r
 # Read raw data 
 activity.data.raw <- read.csv("./activity.csv", header=TRUE,na.strings = "NA", stringsAsFactors = FALSE)
 
@@ -38,14 +40,14 @@ hist(total.steps.in.a.day[,2], main = "Histogram for 53 days (Excluding 'Missing
      xlab = "Total number of steps in a day")
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
 
 ```r
 # mean and median total number of steps taken per day
 mean.total.steps <- mean (total.steps.in.a.day[,2])
 median.total.steps <- median (total.steps.in.a.day[,2])
 ```
-The **mean** is 1.0766189 &times; 10<sup>4</sup> and the **median** is 10765
+The **mean** is 1.0766189\times 10^{4} and the **median** is 10765
 
 ## What is the average daily activity pattern?
 
@@ -58,7 +60,7 @@ plot(average.data$interval, average.data$steps, type="l", main="Average daily ac
      xlab="5-minute interval", ylab="Average number of steps",col = "dark red")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
 ```r
 # Which 5-minute interval is having the maximum average number of steps
@@ -114,7 +116,7 @@ hist(total.steps.in.a.day.complete.data[,2], main = "Histogram for all days  ",c
      xlab = "Total number of steps in a day")
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
 
 ```r
 # mean and median total number of steps taken per day
@@ -122,7 +124,7 @@ mean.total.steps.complete.data <- mean (total.steps.in.a.day.complete.data[,2])
 median.total.steps.complete.data <- median (total.steps.in.a.day.complete.data[,2])
 ```
 
-The **mean** is 1.0766189 &times; 10<sup>4</sup> and the **median** is 1.0766189 &times; 10<sup>4</sup>
+The **mean** is 1.0766189\times 10^{4} and the **median** is 1.0766189\times 10^{4}
 
 **Mean and Median Comparison (for non-imputed and imputed dataset)**
 
@@ -142,12 +144,19 @@ names(mean.median.table) <- c("Mean", "Median")
 
 # This library is used to print a table in html file
 library("xtable")
+```
+
+```
+## Warning: package 'xtable' was built under R version 3.1.2
+```
+
+```r
 disp.table <- xtable(mean.median.table)
 print(disp.table,type = "html")
 ```
 
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Sat Jan 17 22:17:46 2015 -->
+<!-- Sun May 17 22:05:30 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Mean </th> <th> Median </th>  </tr>
   <tr> <td align="right"> Without imputing missing values </td> <td align="right"> 10766.19 </td> <td align="right"> 10765.00 </td> </tr>
@@ -172,7 +181,7 @@ print(xtable(s1), type = "html")
 ```
 
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Sat Jan 17 22:17:46 2015 -->
+<!-- Sun May 17 22:05:30 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Without imputing </th> <th> With imputing </th>  </tr>
   <tr> <td align="right"> Min. </td> <td align="right"> 41.00 </td> <td align="right"> 41.00 </td> </tr>
@@ -206,9 +215,9 @@ library(package ="lattice")
 average.data.week <- aggregate(steps~interval+type.of.day, data=activity.data.raw.copy, FUN=mean)
 
 # Plot with 2 panels
-xyplot(average.data.week$steps ~ average.data.week$interval|average.data.weekday$type.of.day, type="l",
+xyplot(average.data.week$steps ~ average.data.week$interval|average.data.week$type.of.day, type="l",
   main="Average daily activity pattern", xlab="5-minute interval", ylab="Average number of steps", 
   col = "green", layout = c(1,2))
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
